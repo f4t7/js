@@ -1,0 +1,24 @@
+let w = window;
+let depth = 0;
+
+while (w) {
+    try {
+        console.log({
+            depth,
+            origin: w.location.origin,
+            url: w.location.href
+        });
+
+        if (w === w.parent) break;
+
+        w = w.parent;
+        depth++;
+    } catch (e) {
+        console.log({
+            depth,
+            error: e.name,
+            message: e.message
+        });
+        break;
+    }
+}
