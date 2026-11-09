@@ -1,9 +1,24 @@
 <html><head>
 <script>
-console.log({
-    currentFrame: window.frameElement,
-    parentFrame: window.parent.frameElement,
-    superparent: window.parent.parent.frameElement
+console.table({
+    currentOrigin: location.origin,
+    currentURL: location.href,
+    isTop: window === window.top,
+    isParent: window === window.parent,
+    parentAccessible: (() => {
+        try {
+            return !!window.parent.document;
+        } catch (e) {
+            return e.name;
+        }
+    })(),
+    frameElementAccessible: (() => {
+        try {
+            return window.frameElement !== null;
+        } catch (e) {
+            return e.name;
+        }
+    })()
 });
 </script>
 </head><body>Entry not found</body></html>
